@@ -1,0 +1,73 @@
+.Panel {
+  width: 300px;
+  max-width: calc(100% - 48px);
+  color: #0a2136;
+  background-color: #fff;
+  box-shadow: 0 0 16px #0a213633;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.Panel h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.Panel .input-container {
+  margin-bottom: 0.5em;
+}
+
+.Panel .input-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  font-size: 0.9rem;
+}
+
+.Panel .input-container input[type=text],
+.Panel .input-container input[type=password] {
+  width: calc(100% - 16px);
+  height: 40px;
+  border-radius: 4px;
+  padding: 0 8px;
+  background-color: #f4f7fb;
+  border: 1px solid #d8e3ee;
+  transition: background .3s,border .3s;
+  outline: 0;
+  font-size: 0.9rem;
+}
+
+.Panel .input-container input[type=text]:hover,
+.Panel .input-container input[type=password]:hover {
+  background-color: #e8f0f8;
+  border: 1px solid #1e3a54;
+}
+
+.Panel .input-container input[type=text]:focus,
+.Panel .input-container input[type=password]:focus {
+  background-color: #f4f7fb;
+  border: 1px solid #3c5974;
+}
+
+.Panel input[type=submit],
+.Panel button {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 24px;
+  font-size: 0.9rem;
+  background-color: #0a2136;
+  color: #fff;
+  box-shadow: 0 0 0 1px inset #1e3a54;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  border-radius: 4px;
+  transition: background .3s,color .3s,border .3s,box-shadow .3s,padding .3s;
+  font-weight: bold;
+  margin-top: calc(24px - 0.5em);
+}
+
+.Panel input[type=submit]:hover,
+.Panel button:hover {
+  background-color: #1e3a54;
+}
