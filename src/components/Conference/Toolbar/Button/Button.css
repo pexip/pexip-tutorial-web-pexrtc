@@ -1,0 +1,23 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  background: rgba(48, 48, 48, 0.65);
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Button.selected {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #111;
+}
+
+.Button:hover, .Button.selected:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #111;
+}
