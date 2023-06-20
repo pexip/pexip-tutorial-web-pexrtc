@@ -17,7 +17,9 @@ function Conference(props) {
   return (
     <div className='Conference'>
       <Video className='remote-video' mediaStream={props.remoteStream}/>
-      <Video className='local-video' mediaStream={props.localStream} muted={true}/>
+      { props.localStream &&
+        <Video className='local-video' mediaStream={props.localStream} muted={true}/>
+      }
       <Toolbar className='toolbar' pexRTC={props.pexRTC} />
     </div>
   );

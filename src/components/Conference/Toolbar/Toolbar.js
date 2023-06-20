@@ -12,12 +12,23 @@ import CallEndIcon from "@mui/icons-material/CallEnd";
 import "./Toolbar.css";
 
 function Toolbar(props) {
-  // TODO (02) Define react state to save the audio muted state
-  // TODO (03) Define react state to save the video muted state
+  const [audioMuted, setAudioMuted] = useState(false);
+  const [videoMuted, setVideoMuted] = useState(false);
 
-  // TODO (04) Define the callback function for the audio mute button
+  const handleAudioMute = () => {
+    const muted = props.pexRTC.muteAudio(!audioMuted);
+    setAudioMuted(muted);
+  };
 
-  // TODO (05) Define the callback function for the video mute button
+  const handleVideoMute = async () => {
+    const muted = props.pexRTC.muteVideo(!videoMuted);
+    setVideoMuted(muted);
+    if (muted) {
+      props.pexRTC.onSetup(null);
+    } else {
+      props.pexRTC.onSetup(props.pexRTC.call.mediaStream)
+    }
+  };
 
   const handleHangUp = () => {
     props.pexRTC.disconnect();
@@ -28,8 +39,16 @@ function Toolbar(props) {
 
   return (
     <div className={className}>
-      {/* TODO (06) Create button to mute the audio */}
-      {/* TODO (07) Create button to mute the video */}
+      <Button
+        onClick={handleAudioMute}
+        selected={audioMuted}
+        icon={audioMuted ? <MicOffIcon /> : <MicIcon />}
+      />
+      <Button
+        onClick={handleVideoMute}
+        selected={videoMuted}
+        icon={videoMuted ? <VideocamOffIcon /> : <VideocamIcon />}
+      />
       <Button onClick={handleHangUp} icon={<CallEndIcon />} />
     </div>
   );
