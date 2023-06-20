@@ -14,21 +14,45 @@ const Video = React.memo((props) => {
 })
 
 function Conference(props) {
-  // TODO (09) Define react state to save the video that is displayed in the main region
+  const [presentationInMain, setPresentationInMain] = useState();
 
-  // TODO (10) Define function to change between the remote video and the presentation
+  const switchVideos = (event) => {
+    if (event.target.className === 'presentation-video') {
+      setPresentationInMain(true);
+    } else {
+      setPresentationInMain(false);
+    }
+  }
+  const memoizedSwitchVideos = React.useCallback(switchVideos , []);
 
-  // TODO (11) Reset presentation in main once the other party stops sharing
-  // TODO (12) Set the remote presentation on hte main section at the beginning
+  useEffect(() => {
+    if (!props.presentationStream) {
+      if (presentationInMain != null) setPresentationInMain(null);
+    } else {
+      if (presentationInMain == null && !props.pexRTC.screenshare_requested) {
+        setPresentationInMain(true);
+      }
+    }
+  }, [
+    presentationInMain,
+    props.localStream,
+    props.pexRTC.screenshare_requested,
+    props.presentationStream
+  ]);
+
+  const additionalClasses = presentationInMain ? ' presentation-in-main' : '';
 
   return (
-    <div className='Conference'>
-      {/* TODO (13) Modify the remote video to toggle between it and the presentation */}
-      <Video className='remote-video' mediaStream={props.remoteStream}/>
+    <div className={'Conference' + additionalClasses}>
+      <Video className='remote-video'
+         mediaStream={props.remoteStream} onClick={ memoizedSwitchVideos }/>
       { props.localStream &&
         <Video className='local-video' mediaStream={props.localStream} muted={true}/>
       }
-      {/* TODO (14) Define the video for the presentation */}
+      { props.presentationStream &&
+        <Video className='presentation-video'
+          mediaStream={props.presentationStream} onClick={ memoizedSwitchVideos }/>
+      }
       <Toolbar className='toolbar' pexRTC={props.pexRTC} />
     </div>
   );
