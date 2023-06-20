@@ -14,7 +14,7 @@ import "./Toolbar.css";
 function Toolbar(props) {
   const [audioMuted, setAudioMuted] = useState(false);
   const [videoMuted, setVideoMuted] = useState(false);
-  // TODO (05) Define react state to save the screen share state
+  const [screenShared, setScreenShared] = useState(false);
 
   const handleAudioMute = () => {
     const muted = props.pexRTC.muteAudio(!audioMuted);
@@ -31,7 +31,14 @@ function Toolbar(props) {
     }
   };
 
-  // TODO (06) Define the callback function for screen share
+  const handleScreenShare = () => {
+    if (screenShared) {
+      props.pexRTC.present(null);
+    } else {
+      props.pexRTC.present("screen");
+    }
+    setScreenShared(!screenShared);
+  };
 
   const handleHangUp = () => {
     props.pexRTC.disconnect();
@@ -40,7 +47,12 @@ function Toolbar(props) {
 
   const className = [props.className, "Toolbar"].join(" ");
 
-  // TODO (07) Disable the screen share button in case it is disabled by the browser
+  useEffect(() => {
+    // In case the user use the browser stop sharing button
+    if (!props.pexRTC.screenshare_requested && screenShared) {
+      setScreenShared(false);
+    }
+  }, [props.pexRTC.screenshare_requested, screenShared])
 
   return (
     <div className={className}>
@@ -54,7 +66,11 @@ function Toolbar(props) {
         selected={videoMuted}
         icon={videoMuted ? <VideocamOffIcon /> : <VideocamIcon />}
       />
-      {/* TODO (08) Create button start screen share */}
+      <Button
+        onClick={handleScreenShare}
+        selected={screenShared}
+        icon={<ScreenShareIcon />}
+      />
       <Button onClick={handleHangUp} icon={<CallEndIcon />} />
     </div>
   );
