@@ -3,15 +3,22 @@ import Toolbar from './Toolbar/Toolbar';
 
 import './Conference.css';
 
-// TODO (15) Define the Video component
+const Video = React.memo((props) => {
+  return <video className={props.className} autoPlay playsInline
+    muted={ props.muted }
+    onClick={ props.onClick }
+    ref={ (element) => {
+      if (element) element.srcObject = props.mediaStream;
+    }}
+  />
+})
 
 function Conference(props) {
-
   return (
     <div className='Conference'>
-      {/* TODO (16) Set the component for the remote video */}
-      {/* TODO (17) Set the component for the local video */}
-      {/* TODO (18) Set the component for the Toolbar */}
+      <Video className='remote-video' mediaStream={props.remoteStream}/>
+      <Video className='local-video' mediaStream={props.localStream} muted={true}/>
+      <Toolbar className='toolbar' pexRTC={props.pexRTC} />
     </div>
   );
 }

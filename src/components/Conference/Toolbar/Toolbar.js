@@ -13,13 +13,16 @@ import "./Toolbar.css";
 
 function Toolbar(props) {
 
-  // TODO (19) Define the function to call when we push the hang up button
+  const handleHangUp = () => {
+    props.pexRTC.disconnect();
+    props.pexRTC.onDisconnect();
+  };
 
   const className = [props.className, "Toolbar"].join(" ");
 
   return (
     <div className={className}>
-      {/* TODO (20) Define the button to hang up */}
+      <Button onClick={handleHangUp} icon={<CallEndIcon />} />
     </div>
   );
 }
