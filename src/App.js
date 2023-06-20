@@ -23,6 +23,7 @@ function App() {
   const [connectionState, setConnectionState] = useState(CONNECTION_STATE.DISCONNECTED);
   const [localStream, setLocalStream] = useState();
   const [remoteStream, setRemoteStream] = useState();
+  // TODO (01) Define react state to save the presentation stream
   const [error, setError] = useState('');
 
   const getPexRTC = async (nodeDomain) => {
@@ -42,6 +43,9 @@ function App() {
         pexRTC.onConnect = handleConnect;
         pexRTC.onDisconnect = handleDisconnect;
         pexRTC.onError = handleError;
+        // TODO (02) Attach handler for onPresentation
+        // TODO (03) Attach handler for onPresentationConnected
+        // TODO (04) Attach handler for onPresentationDisconnected
         resolve(pexRTC);
       };
       script.onerror = () => {
@@ -85,6 +89,12 @@ function App() {
     setError(error)
   };
 
+  // TODO (05) Define the callback function to run when a presentation is received
+
+  // TODO (06) Define the callback function to run when a presentation is connected
+
+  // TODO (07) Define the callback function to run when a presentation is disconnected
+
   const handleStartConference = async (nodeDomain, conferenceAlias, displayName) => {
     setConnectionState(CONNECTION_STATE.CONNECTING);
     pexRTC = await getPexRTC(nodeDomain);
@@ -112,6 +122,7 @@ function App() {
         <Conference
           localStream={localStream}
           remoteStream={remoteStream}
+          // TODO (08) Add the presentation stream
           pexRTC={pexRTC}
         />
       );
