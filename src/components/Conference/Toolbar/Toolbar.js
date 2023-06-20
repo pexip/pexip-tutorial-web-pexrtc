@@ -13,10 +13,13 @@ import "./Toolbar.css";
 
 function Toolbar(props) {
 
+  // TODO (19) Define the function to call when we push the hang up button
+
   const className = [props.className, "Toolbar"].join(" ");
 
   return (
     <div className={className}>
+      {/* TODO (20) Define the button to hang up */}
     </div>
   );
 }
