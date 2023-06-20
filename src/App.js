@@ -11,6 +11,8 @@ const CONNECTION_STATE = {
   DISCONNECTED: 'DISCONNECTED',
   CONNECTING: 'CONNECTING',
   CONNECTED: 'CONNECTED',
+  // TODO (01) Add state for PIN_REQUIRED
+  // TODO (02) Add state for PIN_OPTIONAL
   ERROR: 'ERROR'
 };
 
@@ -55,6 +57,9 @@ function App() {
   const handleSetup = (localStream, pinStatus) => {
     setLocalStream(localStream);
     pexRTC.connect();
+    // TODO (03) Connect directly only when a PIN is not required
+    // TODO (04) Change the connection state to PIN_REQUIRED depending on pinStatus
+    // TODO (05) Change the connection state to PIN_OPTIONAL depending on pinStatus
   };
 
   const handleConnect = (remoteStream) => {
@@ -77,11 +82,15 @@ function App() {
     pexRTC.makeCall(nodeDomain, conferenceAlias, displayName);
   };
 
+  // TODO (06) Define the function that will be triggered once we put the PIN
+
   let component;
   switch (connectionState) {
     case CONNECTION_STATE.CONNECTING:
       component = <Loading />;
       break;
+    // TODO (07) Check if we should display the PIN component with the required attribute
+    // TODO (08) Check if we should display the PIN component without the required attribute
     case CONNECTION_STATE.CONNECTED:
       component = (
         <Conference
