@@ -46,6 +46,8 @@ function App() {
         pexRTC.onPresentation = handlePresentation;
         pexRTC.onPresentationConnected = handlePresentationConnected;
         pexRTC.onPresentationDisconnected = handlePresentationDisconnected;
+        // TODO (01) Attach handler for onScreenshareConnected
+        // TODO (02) Attach handler for onScreenshareStopped
         resolve(pexRTC);
       };
       script.onerror = () => {
@@ -102,6 +104,10 @@ function App() {
       setPresentationStream(null);
     }
   };
+
+  // TODO (03) Define the callback function to run when screen share is connected
+
+  // TODO (04) Define the callback function to run when screen share is stopped
 
   const handleStartConference = async (nodeDomain, conferenceAlias, displayName) => {
     setConnectionState(CONNECTION_STATE.CONNECTING);
