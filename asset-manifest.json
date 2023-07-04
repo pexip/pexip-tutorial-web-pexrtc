@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pexip-tutorial-web-pexrtc/static/css/main.42b70b77.css",
+    "main.js": "/pexip-tutorial-web-pexrtc/static/js/main.cf28b9cb.js",
+    "static/js/496.85e8536a.chunk.js": "/pexip-tutorial-web-pexrtc/static/js/496.85e8536a.chunk.js",
+    "index.html": "/pexip-tutorial-web-pexrtc/index.html",
+    "main.42b70b77.css.map": "/pexip-tutorial-web-pexrtc/static/css/main.42b70b77.css.map",
+    "main.cf28b9cb.js.map": "/pexip-tutorial-web-pexrtc/static/js/main.cf28b9cb.js.map",
+    "496.85e8536a.chunk.js.map": "/pexip-tutorial-web-pexrtc/static/js/496.85e8536a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42b70b77.css",
+    "static/js/main.cf28b9cb.js"
+  ]
+}
